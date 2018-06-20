@@ -70,3 +70,9 @@ web: yarn run build; node server.js
 ## Make a commit and a repository
 
 Make a git commit and a repository under one of your Github users, and give admin access on the repository to all of your teammates.
+
+## Create a Heroku application
+
+Follow our [Heroku cheat sheet](https://git.generalassemb.ly/wdi-nyc-tesseract/tesseract-class-info/wiki/Heroku-Deployment-Cheat-Sheet) to setup and deploy your app to Heroku. 
+
+Add your teammates as collaborators on the Heroku app under the `Access` tab while viewing the project on their website.
