@@ -64,7 +64,7 @@ A [`Procfile`](https://devcenter.heroku.com/articles/procfile) lets us specify w
 Create a `Procfile` in your repository, and build a static copy of the our assets (JavaScript, CSS, HTML, etc.) when the application starts:
 
 ```Procfile
-web: yarn run build; node server.js
+web: npm run build; node server.js
 ```
 
 ## Make a commit and a repository
