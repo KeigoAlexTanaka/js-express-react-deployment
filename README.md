@@ -16,7 +16,22 @@ git init
 ## Install basic dependencies required for Express:
 
 ```bash
-npm install --save express pg-promise pg-monitor bluebird
+npm install --save express pg-promise pg-monitor bluebird nodemon concurrently
+```
+
+## Update the `package.json` scripts
+
+You should change your `package.json` scripts to look like this:
+
+```json
+"scripts": {
+  "start": "node server.js",
+  "dev": "concurrently --names \"React,Express\" --prefix-colors \"green,blue\" \"react-scripts start\" \"nodemon server.js\"",
+  "build": "react-scripts build",
+  "test": "react-scripts test --env=jsdom",
+  "eject": "react-scripts eject",
+  "heroku-postbuild": "npm run build"
+}
 ```
 
 ## Setup `server.js`:
@@ -28,11 +43,15 @@ const path = require('path');
 const app = express();
 
 // Static hosting for built files
-app.use("/static", express.static("./build/static/"));
+app.use("/", express.static("./build/"));
 
 // Set the port based on the environment variable (PORT=8080 node server.js)
 // and fallback to 4567
 const PORT = process.env.PORT || 4567;
+
+// Your routes go here.
+
+
 
 // In production, any request that doesn't match a previous route
 // should send the front-end application, which will handle the route.
@@ -59,16 +78,6 @@ Add the following to your package.json:
 Where `4567` is the port that your Express server runs on.
 
 This allows the `create-react-app` server (usually running on 3000) [to proxy requests](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#proxying-api-requests-in-development) to our Express API back-end.
-
-## Create a Procfile
-
-A [`Procfile`](https://devcenter.heroku.com/articles/procfile) lets us specify what commands should be run on Heroku when we our application starts.
-
-Create a `Procfile` in your repository, and build a static copy of the our assets (JavaScript, CSS, HTML, etc.) when the application starts:
-
-```Procfile
-web: npm run build; node server.js
-```
 
 ## Make a commit and a repository
 
