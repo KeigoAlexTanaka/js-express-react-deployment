@@ -34,6 +34,8 @@ You should change your `package.json` scripts to look like this:
 }
 ```
 
+You will use `npm run dev` to work on your application, which will run both React dev server and Express in ONE terminal tab!
+
 ## Setup `server.js`:
 
 ```js
